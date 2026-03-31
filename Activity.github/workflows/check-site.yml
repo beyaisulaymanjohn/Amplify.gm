@@ -1,1 +1,23 @@
+name: Website Uptime Check
 
+on:
+workflow_dispatch: # Allows you to run the check manually
+schedule:
+- cron: '0 * * * *' # Automatically runs every hour
+
+jobs:
+ping-site:
+runs-on: ubuntu-latest
+steps:
+- name: Check Website Status
+run: |
+# Replace the URL below with your site's address
+URL="https://github.io"
+STATUS_CODE=$(curl -o /dev/null -s -w "%{http_code}" $URL)
+
+if [ $STATUS_CODE -eq 200 ]; then
+echo "✅ Site is UP (Status: $STATUS_CODE)"
+else
+echo "❌ Site is DOWN or unreachable (Status: $STATUS_CODE)"
+exit 1 # This will mark the GitHub Action as "Failed" (red X)
+fi
