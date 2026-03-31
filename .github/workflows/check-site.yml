@@ -11,13 +11,13 @@ runs-on: ubuntu-latest
 steps:
 - name: Check Website Status
 run: |
-# Replace the URL below with your site's address
-URL="https://beyaisulaymanjohn.github.io/Amplify.gm/"
-STATUS_CODE=$(curl -o /dev/null -s -w "%{http_code}" $URL)
+  # Replace the URL below with your site's address
+  URL="https://beyaisulaymanjohn.github.io/Amplify.gm/"
+  STATUS_CODE=$(curl -o /dev/null -s -w "%{http_code}" $URL)
 
-if [ $STATUS_CODE -eq 200 ]; then
-echo "✅ Site is UP (Status: $STATUS_CODE)"
-else
-echo "❌ Site is DOWN or unreachable (Status: $STATUS_CODE)"
-exit 1 # This will mark the GitHub Action as "Failed" (red X)
-fi
+  if [ $STATUS_CODE -eq 200 ]; then
+  echo "✅ Site is UP (Status: $STATUS_CODE)"
+  else
+  echo "❌ Site is DOWN or unreachable (Status: $STATUS_CODE)"
+  exit 1 # This will mark the GitHub Action as "Failed" (red X)
+  fi
